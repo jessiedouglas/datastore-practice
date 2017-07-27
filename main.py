@@ -15,11 +15,60 @@
 # limitations under the License.
 #
 import webapp2
+import jinja2
+import os
+from google.appengine.ext import ndb
 
-class MainHandler(webapp2.RequestHandler):
+# TODO: Add Artist class
+
+# TODO: Add Song class
+
+
+jinja_environment = jinja2.Environment(
+    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
+
+class CreateArtistHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_environment.get_template('templates/create_artist.html')
+        self.response.out.write(template.render())
+    
+    def post(self):
+        # TODO: Fill in and fix this function! Make sure to save the artist to the database.
+        
+        template_vars = {
+            'name': 'Beyonce',
+            'day': '04',
+            'month': '09',
+            'year': '1981'
+        }
+        template = jinja_environment.get_template('templates/show_artist.html')
+        self.response.out.write(template.render(template_vars))
+        
+class CreateSongHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_environment.get_template('templates/create_song.html')
+        self.response.out.write(template.render())
+        
+    def post(self):
+        # TODO: Fill in and fix this function! Make sure to save the song to the database.
+        
+        template_vars = {
+            'title': 'Single Ladies (Put a Ring On It)',
+            'day': '13',
+            'month': '10',
+            'year': '2008',
+            'genre': 'pop',
+            'artist_name': 'Beyonce'
+        }
+        template = jinja_environment.get_template('templates/show_song.html')
+        self.response.out.write(template.render(template_vars))
+        
+class ListSongsByArtistHandler(webapp2.RequestHandler):
     def get(self):
         self.response.write('Hello world!')
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/addartist', CreateArtistHandler),
+    ('/addsong', CreateSongHandler),
+    ('/listsongs', ListSongsByArtistHandler)
 ], debug=True)
