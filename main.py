@@ -65,7 +65,18 @@ class CreateSongHandler(webapp2.RequestHandler):
         
 class ListSongsByArtistHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.write('Hello world!')
+        template = jinja_environment.get_template('templates/search_songs.html')
+        self.response.out.write(template.render())
+        
+    def post(self):
+        # TODO: Fill in and fix this function!
+        
+        template_vars = {
+            'artist_name': 'Beyonce',
+            'songs': ['Single Ladies (Put a Ring On It)', 'Halo', 'Crazy in Love']
+        }
+        template = jinja_environment.get_template('templates/list_songs.html')
+        self.response.out.write(template.render(template_vars))
 
 app = webapp2.WSGIApplication([
     ('/addartist', CreateArtistHandler),
