@@ -19,9 +19,9 @@ import jinja2
 import os
 from google.appengine.ext import ndb
 
-# TODO: Add Artist class
+# Step 1: Add Artist class
 
-# TODO: Add Song class
+# Step 2: Add Song class
 
 
 jinja_environment = jinja2.Environment(
@@ -33,8 +33,11 @@ class CreateArtistHandler(webapp2.RequestHandler):
         self.response.out.write(template.render())
     
     def post(self):
-        # TODO: Fill in and fix this function! Make sure to save the artist to the database.
+        # Step 3: Grab the input values from the request.
         
+        # Step 4: Save the values to the database.
+        
+        # Step 5: Change the template variables to reflect the user input.
         template_vars = {
             'name': 'Beyonce',
             'day': '04',
@@ -50,8 +53,11 @@ class CreateSongHandler(webapp2.RequestHandler):
         self.response.out.write(template.render())
         
     def post(self):
-        # TODO: Fill in and fix this function! Make sure to save the song to the database.
+        # Step 6: Grab the input values from the request.
         
+        # Step 7: Save the values to the database.
+        
+        # Step 8: Change the template variables to reflect the user input.
         template_vars = {
             'title': 'Single Ladies (Put a Ring On It)',
             'day': '13',
@@ -69,8 +75,12 @@ class ListSongsByArtistHandler(webapp2.RequestHandler):
         self.response.out.write(template.render())
         
     def post(self):
-        # TODO: Fill in and fix this function!
+        # Step 9: Grab the artist name from the request.
         
+        # Step 10: Query the database for all songs by the given artist.
+        # NOTE: Specify the artist name in the query! You don't need a for loop anywhere in this function.
+        
+        # Step 11: Change the template variables to reflect the search results.
         template_vars = {
             'artist_name': 'Beyonce',
             'songs': ['Single Ladies (Put a Ring On It)', 'Halo', 'Crazy in Love']
